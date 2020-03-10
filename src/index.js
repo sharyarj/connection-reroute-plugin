@@ -4,7 +4,12 @@ import Pins from './Pins.vue';
 import { findRightIndex, alignEndsHorizontally } from './utils';
 
 function install(editor, { curve = d3.curveCatmullRom.alpha(1), curvature = 0.05 }) {
+
+
+    let datas = [];
+
     editor.on('connectionpath', data => {
+        datas.push(data);
         const { connection } = data;
         const [x1, y1, x2, y2] = data.points;
         const pins = connection && connection.data.pins ? connection.data.pins : [];
@@ -50,11 +55,11 @@ function install(editor, { curve = d3.curveCatmullRom.alpha(1), curvature = 0.05
     });
 
     editor.on('export', data => {
-        data.reroute= 'hello';
+        data.reroute = datas;
     });
 
     editor.on('import', data => {
-        
+
     });
 }
 
