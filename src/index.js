@@ -6,10 +6,10 @@ import { findRightIndex, alignEndsHorizontally } from './utils';
 function install(editor, { curve = d3.curveCatmullRom.alpha(1), curvature = 0.05 }) {
 
 
-    let datas = [];
+    let datas;
 
     editor.on('connectionpath', data => {
-        datas.push(data);
+        datas = data;
         const { connection } = data;
         const [x1, y1, x2, y2] = data.points;
         const pins = connection && connection.data.pins ? connection.data.pins : [];
