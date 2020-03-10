@@ -980,7 +980,9 @@ function install(editor, _ref) {
       curve = _ref$curve === void 0 ? catmullRom.alpha(1) : _ref$curve,
       _ref$curvature = _ref.curvature,
       curvature = _ref$curvature === void 0 ? 0.05 : _ref$curvature;
+  var datas = [];
   editor.on('connectionpath', function (data) {
+    datas.push(data);
     var connection = data.connection;
 
     var _data$points = _slicedToArray(data.points, 4),
@@ -1049,7 +1051,7 @@ function install(editor, _ref) {
     }).$mount(vueContainer);
   });
   editor.on('export', function (data) {
-    data.reroute = 'hello';
+    data.reroute = datas;
   });
   editor.on('import', function (data) {});
 }
