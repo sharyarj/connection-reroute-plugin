@@ -47,7 +47,15 @@ function install(editor, { curve = d3.curveCatmullRom.alpha(1), curvature = 0.05
             },
             render: h => h(Pins, { props: { pins } })
         }).$mount(vueContainer)
-    })
+    });
+
+    editor.on('export', data => {
+        data.reroute= 'hello';
+    });
+
+    editor.on('import', data => {
+        
+    });
 }
 
 export default {
